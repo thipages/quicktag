@@ -1,0 +1,19 @@
+{
+  "name": "thipages/quicktag",
+  "version": "v0.1.0",
+  "description": "Quick html tags builder",
+  "type": "library",
+  "keywords" : ["html","tag","void","div","quick","attributes"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Thierry PAGES",
+      "email": "thipages@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-0": {"thipages\\quick\\": "src/"}
+  },
+  "require": {}
+}
