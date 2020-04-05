@@ -19,6 +19,9 @@ QTag::tag('div',[
         <div style="color:green;">QTag</div>
     </div>
 */
+
+QTag::voidTag('input', ['type'=>'num','min'=>2]);
+/* <input type="num" min="2" /> */
 ```
 
 ## Usage of QT
