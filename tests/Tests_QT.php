@@ -3,7 +3,8 @@ use thipages\quick\QT;
 class Tests_QT {
     public static function tests() {
         $merger=QT::merger([]);
-        $wrapper=QT::wrapper([]);
+        $wrapper1=QT::wrapper(['c'=>1]);
+        $wrapper2=QT::wrapper(['c'=>1,'_content'=>['c'=>2,'_content'=>[]]]);
         return [
             [
                 QT::toHtml(),
@@ -54,9 +55,13 @@ class Tests_QT {
                 '<div class="c"></div>',
                 'merger()'
             ],[
-                $wrapper([],true),
-                '<div><div></div></div>',
+                $wrapper1(['c'=>2],true),
+                '<div c="1"><div c="2"></div></div>',
                 'wrapper()'
+            ],[
+                $wrapper2(['c'=>3],true),
+                '<div c="1"><div c="2"><div c="3"></div></div></div>',
+                'wrapper() nested'
             ]
         ];
     }
