@@ -22,6 +22,9 @@ QTag::tag('div',[
 
 QTag::voidTag('input', ['type'=>'num','min'=>2]);
 /* <input type="num" min="2" /> */
+
+QTag::div("shortcut");
+/* <div>shortcut</div> */
 ```
 
 ## Usage of QT
