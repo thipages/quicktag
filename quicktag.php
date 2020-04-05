@@ -6,7 +6,13 @@ class QT {
     ];
     public static function wrapper($wrapper) {
         return function  ($content,$toHtml) use($wrapper){
-            $wrapper['_content']=$content;
+            if (!isset($wrapper['_content'])) {
+                $wrapper['_content']=$content;
+            } else {
+                $w=&$wrapper['_content'];
+                while (isset($w['_content'])) $w=&$w['_content'];
+                $w=$content;
+            }
             return $toHtml?self::toHtml($wrapper):$wrapper;
         };
     }
