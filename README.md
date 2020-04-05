@@ -14,10 +14,10 @@ Quick Html tags builder
 
 #### Examples
 ```php
-QTag::tag('div','Hello QTag',['style'=>'color:blue;']);
+$html=QTag::tag('div','Hello QTag',['style'=>'color:blue;']);
 /* <div style="color:blue;">Hello QTag</div> */
 
-QTag::tag('div',[
+$html=QTag::tag('div',[
     QTag::tag('div','Hello'),
     QTag::tag('div','QTag', ['style'=>'color:green;'])
 ], 'title'=>'Hello QTag);
@@ -28,10 +28,10 @@ QTag::tag('div',[
     </div>
 */
 
-QTag::voidTag('input', ['type'=>'num','min'=>2]);
+$html=QTag::voidTag('input', ['type'=>'num','min'=>2]);
 /* <input type="num" min="2" /> */
 
-QTag::div("shortcut");
+$html=QTag::div("shortcut");
 /* <div>shortcut</div> */
 ```
 
