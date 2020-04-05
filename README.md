@@ -2,7 +2,7 @@
 Quick Html tags builder
 
 ### Installation
-composer require thipages\quicktag OR use the single php file quicktag.php
+**composer** require thipages\quicktag OR use the single php file **quicktag.php**
 
 ### Usage of QTag class
 #### Through 3 static methods
