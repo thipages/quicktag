@@ -1,18 +1,18 @@
 # quicktag
 Quick Html tags builder
 
-## Installation
+### Installation
 composer require thipages\quicktag OR use the single php file quicktag.php
 
-## Usage of QTag class
-through 3 static methods :
+### Usage of QTag class
+#### Through 3 static methods
 ```php
-    tag ($tag, $content='', $attributeMap=[])
+    tag     ($tag, $content='', $attributeMap=[])
     voidTag ($tag, $attributeMap=[])
-    div ($content='',$attributeMap=[]) // a shortcut div builder
+    div     ($content='',$attributeMap=[]) // a shortcut div builder
 ```
 
-
+#### Examples
 ```php
 QTag::tag('div','Hello QTag',['style'=>'color:blue;']);
 /* <div style="color:blue;">Hello QTag</div> */
@@ -35,5 +35,5 @@ QTag::div("shortcut");
 /* <div>shortcut</div> */
 ```
 
-## Usage of QT
+### Usage of QT
 to be written
