@@ -15,7 +15,7 @@ class GenericTable {
             }
             $html_rows[]=QTag::tag('tr',join('',$c));
         }
-        if ($headers) foreach ($headers as $header) $html_header[]=QTag::tag('th',$header,['style'=>'padding:3px']);
+        if ($headers) foreach ($headers as $header) $html_header[]=QTag::tag('th',$header);
         $this->html= QTag::tag(
             'table',
             join('',$html_header)
@@ -26,7 +26,7 @@ class GenericTable {
     public function getHTML() {
         return $this->html;
     }
-    public static function helper($headers,$rows, $tableAttributes=[]) {
-        return (new self($headers,$rows, $tableAttributes))->getHtml();
+    public static function helper($headers, $cells, $tableAttributes=[]) {
+        return (new self($headers,$cells, $tableAttributes))->getHtml();
     }
 }

@@ -27,7 +27,7 @@ class Tests {
                 $index++;
             }
             $html[] = QTag::tag('h3', $test);
-            $html[] = GenericTable::helper(['Descrition', 'Result', 'Actual', 'Expected', 'Html'], $res, ['border' => 1]);
+            $html[] = GenericTable::helper(['Description', 'Result', 'Actual', 'Expected', 'Html'], $res, ['border' => 1]);
         }
         return join('',$html);
     }
