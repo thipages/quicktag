@@ -9,6 +9,6 @@ include_once('Tests_QT.php');
 include_once('Tests.php');
 
 $output=Tests::getOutput(
-    [Tests_QTag::class, Tests_QT::class]
+    [Tests_QTag::class, Tests_QT::class],[0,6]
 );
 echo($output);

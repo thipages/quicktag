@@ -5,11 +5,12 @@ Quick Html tags builder
 **composer** require thipages\quicktag OR use the single php file **quicktag.php**
 
 ### Usage of QTag class
-#### Through 3 static methods
+#### Through 4 static methods
 ```php
     tag     ($tag, $content='', $attributeMap=[])
     voidTag ($tag, $attributeMap=[])
-    div     ($content='',$attributeMap=[]) // a shortcut div builder
+    tagN    ($tag, $contents, $attributeMap) // a shortcut for tag repetition
+    div     ($content='',$attributeMap=[])   // a shortcut div builder
 ```
 
 #### Examples
@@ -30,6 +31,9 @@ $html=QTag::tag('div',[
 
 $html=QTag::voidTag('input', ['type'=>'num','min'=>2]);
 /* <input type="num" min="2" /> */
+
+$html=QTag::tagN('div',[1,2]);
+/* <div>1</div><div>2</div> */
 
 $html=QTag::div("shortcut");
 /* <div>shortcut</div> */

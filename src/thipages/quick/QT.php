@@ -42,7 +42,7 @@ class QT {
         if (isset($content['_content'])) {
             $c=$content['_content'];
             unset($content['_content']);
-            $c=is_string($c)?$c:self::toHtml($c);
+            $c=is_scalar($c)?$c:self::toHtml($c);
         } else {
             $c='';
         }
@@ -51,8 +51,9 @@ class QT {
     }
     public static function toHtml($contents=null) {
         $html=[];
-        if ($contents==null) $html[]=self::_getHtml(['_tag'=>'div']);
-        else if (Tools::isAssociativeArray($contents)) {
+        if ($contents==null) {
+            $html[]=self::_getHtml(['_tag'=>'div']);
+        } else if (Tools::isAssociativeArray($contents)) {
             $html[]=self::_getHtml($contents);
         } else {
             foreach ($contents as $content) $html[]=self::_getHtml($content);

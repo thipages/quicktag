@@ -29,6 +29,11 @@ class Tests_QTag {
                 QTag::div(),
                 '<div></div>',
                 'div() without argument'
+            ],
+            [
+                QTag::tagN('div',[1,2]),
+                '<div>1</div><div>2</div>',
+                'tagN()'
             ]
         ];
     }

@@ -39,7 +39,7 @@ class QT {
         if (isset($content['_content'])) {
             $c=$content['_content'];
             unset($content['_content']);
-            $c=is_string($c)?$c:self::toHtml($c);
+            $c=is_scalar($c)?$c:self::toHtml($c);
         } else {
             $c='';
         }
@@ -48,8 +48,9 @@ class QT {
     }
     public static function toHtml($contents=null) {
         $html=[];
-        if ($contents==null) $html[]=self::_getHtml(['_tag'=>'div']);
-        else if (Tools::isAssociativeArray($contents)) {
+        if ($contents==null) {
+            $html[]=self::_getHtml(['_tag'=>'div']);
+        } else if (Tools::isAssociativeArray($contents)) {
             $html[]=self::_getHtml($contents);
         } else {
             foreach ($contents as $content) $html[]=self::_getHtml($content);
@@ -97,16 +98,26 @@ class QTag {
     public static function tag($tag='div', $content='', $attributeMap=[]) {
         Tools::defaultToArray($attributeMap);
         $c=is_array($content)?join('',$content):$content;
-        return QT::toHtml(array_merge($attributeMap,[
-            '_tag'=>$tag,
-            '_content'=>$c,
-        ]));
+        return self::toHtml($tag,$c,$attributeMap);
     }
     public static function voidTag($tag,$attributeMap=[]) {
         return self::tag($tag,'',$attributeMap);
     }
+    public static function tagN($tag='div',$contents=[],$attributeMap=[]) {
+        $html=[];
+        foreach($contents as $c) {
+            $html[]=self::toHtml($tag,$c,$attributeMap);
+        }
+        return join('',$html);
+    }
     public static function div($content='', $attributeMap=[]) {
         return self::tag('div',$content,$attributeMap);
+    }
+    private static function toHtml ($tag,$content,$attributeMap) {
+        return QT::toHtml(array_merge($attributeMap,[
+            '_tag'=>$tag,
+            '_content'=>$content,
+        ]));
     }
 
 }
