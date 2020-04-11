@@ -1,9 +1,5 @@
 <?php
-
-include_once('./../src/thipages/quick/QTag.php');
-include_once('../src/thipages/quick/QT.php');
-include_once('../src/thipages/quick/Tools.php');
-include_once('GenericTable.php');
+include('../vendor/autoload.php');
 include_once('Tests_QTag.php');
 include_once('Tests_QT.php');
 include_once('Tests.php');

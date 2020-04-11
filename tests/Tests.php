@@ -1,5 +1,6 @@
 <?php
 use thipages\quick\QTag;
+use thipages\quick\QTable;
 class Tests {
     public static function textarea($value) {
         return QTag::tag(
@@ -27,7 +28,7 @@ class Tests {
                 $index++;
             }
             $html[] = QTag::tag('h3', $test);
-            $html[] = GenericTable::helper(['Description', 'Result', 'Actual', 'Expected', 'Html'], $res, ['border' => 1]);
+            $html[] = QTable::create(['Description', 'Result', 'Actual', 'Expected', 'Html'], $res, ['border' => 1]);
         }
         return join('',$html);
     }

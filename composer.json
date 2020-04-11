@@ -15,8 +15,10 @@
   "autoload": {
     "psr-0": {"thipages\\quick\\": "src/"}
   },
-  "require": {},
+  "require": {
+    
+  },
   "require-dev": {
-    "thipages/quicktable": "*"
+    "thipages/quicktable": "v0.3.0"
   }
 }
