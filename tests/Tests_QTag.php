@@ -34,6 +34,13 @@ class Tests_QTag {
                 QTag::tagN('div',[1,2]),
                 '<div>1</div><div>2</div>',
                 'tagN()'
+            ],
+            [
+                QTag::html(
+                    [QTag::head('',"a title"),QTag::body('Hello QTag')]
+                ),
+                '<!DOCTYPE html>\n<html lang="en"><head><meta charset="utf-8"><title>a title</title></head><body>Hello QTag</body></html>',
+                'html(), head() and body()'               
             ]
         ];
     }

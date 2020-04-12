@@ -20,11 +20,39 @@ class QTag {
     public static function div($content='', $attributeMap=[]) {
         return self::tag('div',$content,$attributeMap);
     }
+    public static function html($content, $attributes=['lang'=>'en']) {
+        return join('\n',
+            ['<!DOCTYPE html>',self::tag('html',$content,$attributes)]
+        );
+    }
+    public static function head($content,$title,$charset='utf-8') {
+        return self::tag('head',
+            [
+                "<meta charset=\"$charset\">",
+                "<title>$title</title>",
+                $content
+            ]
+        );
+    }
+    public static function body($content) {
+        return self::tag('body',$content);    
+    }
     private static function toHtml ($tag,$content,$attributeMap) {
         return QT::toHtml(array_merge($attributeMap,[
             '_tag'=>$tag,
             '_content'=>$content,
         ]));
     }
-
 }
+/*
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+ */

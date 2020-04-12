@@ -5,12 +5,16 @@ Quick Html tags builder
 **composer** require thipages\quicktag OR use the single php file **quicktag.php**
 
 ### Usage of QTag class
-#### Through 4 static methods
+#### Through the following static methods
 ```php
     tag     ($tag, $content='', $attributeMap=[])
     voidTag ($tag, $attributeMap=[])
-    tagN    ($tag, $contents, $attributeMap) // a shortcut for tag repetition
-    div     ($content='',$attributeMap=[])   // a shortcut div builder
+    tagN    ($tag, $contents, $attributeMap) // a facility for tag repetition
+    // shortcuts
+    html    ($content, $attributes=['lang'=>'en'])
+    head    ($content,$title,$charset='utf-8')
+    body    ($content)
+    div     ($content='',$attributeMap=[])
 ```
 
 #### Examples
