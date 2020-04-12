@@ -1,7 +1,7 @@
 <?php
 use thipages\quick\QT;
 class Tests_QT {
-    public static function tests() {
+    public static function dataSet() {
         $merger=QT::merger([]);
         $wrapper1=QT::wrapper(['c'=>1]);
         $wrapper2=QT::wrapper(['c'=>1,'_content'=>['c'=>2,'_content'=>[]]]);

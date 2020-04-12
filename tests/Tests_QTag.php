@@ -1,7 +1,7 @@
 <?php
 use thipages\quick\QTag;
 class Tests_QTag {
-    public static function tests() {
+    public static function dataSet() {
         return [
             [
                 QTag::tag(),
