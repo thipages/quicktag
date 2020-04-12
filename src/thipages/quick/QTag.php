@@ -34,8 +34,8 @@ class QTag {
             ]
         );
     }
-    public static function body($content) {
-        return self::tag('body',$content);    
+    public static function body($content, $attributeMap=[]) {
+        return self::tag('body',$content,$attributeMap);    
     }
     private static function toHtml ($tag,$content,$attributeMap) {
         return QT::toHtml(array_merge($attributeMap,[
