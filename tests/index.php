@@ -6,7 +6,7 @@ include_once('Tests_QT.php');
 use thipages\quick\QTag;
 use thipages\quick\tests\QTests;
 $output=QTests::getOutput(
-    [Tests_QTag::class, Tests_QT::class]
+    [Tests_QTag::class, Tests_QT::class],true
 );
 $page=QTag::html(
     [
