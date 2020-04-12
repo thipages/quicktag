@@ -10,8 +10,10 @@ $output=Tests::getOutput(
 );
 $page=QTag::html(
     [
-        QTag::head('',"quicktag Tests"),
+        QTag::div(QTag::div("test js",['onclick'=>'handleEvents(event);']),['id'=>"id1"]),
+        QTag::head(QTag::tag('script','',['src'=>'index.js']),"quicktag Tests"),
         QTag::body($output)
     ]
 );
 echo($page);
+
