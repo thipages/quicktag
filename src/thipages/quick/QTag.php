@@ -21,7 +21,7 @@ class QTag {
         return self::tag('div',$content,$attributeMap);
     }
     public static function html($content, $attributes=['lang'=>'en']) {
-        return join('\n',
+        return join("\n",
             ['<!DOCTYPE html>',self::tag('html',$content,$attributes)]
         );
     }

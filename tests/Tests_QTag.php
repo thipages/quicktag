@@ -39,7 +39,7 @@ class Tests_QTag {
                 QTag::html(
                     [QTag::head('',"a title"),QTag::body('Hello QTag')]
                 ),
-                '<!DOCTYPE html>\n<html lang="en"><head><meta charset="utf-8"><title>a title</title></head><body>Hello QTag</body></html>',
+                '<!DOCTYPE html>'."\n".'<html lang="en"><head><meta charset="utf-8"><title>a title</title></head><body>Hello QTag</body></html>',
                 'html(), head() and body()'               
             ]
         ];
