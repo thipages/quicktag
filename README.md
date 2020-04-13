@@ -26,23 +26,23 @@ Quick Html tags builder
 $html=QTag::tag('div','Hello QTag',['style'=>'color:blue']);
 /* <div style="color:blue">Hello QTag</div> */
 
+$html=QTag::voidTag('input', ['type'=>'num','min'=>2]);
+/* <input type="num" min="2" /> */
+
 $blue=['style'=>'color:blue'];
 $html=QTag::tag('div','Merged with static attributes',$blue,['padding'=>'3px']);
 /* <div style="color:blue;padding:3px">Merging with static attributes</div> */
 
 $html=QTag::tag('div',[
     QTag::tag('div','Hello'),
-    QTag::tag('div','QTag', ['style'=>'color:green'])
+    QTag::tag('div','QTag')
 ], 'title'=>'Hello QTag);
 /*
     <div title="Hello QTag">
         <div>Hello</div>
-        <div style="color:green">QTag</div>
+        <div>QTag</div>
     </div>
 */
-
-$html=QTag::voidTag('input', ['type'=>'num','min'=>2]);
-/* <input type="num" min="2" /> */
 
 $html=QTag::tagN('div',[1,2]);
 /* <div>1</div><div>2</div> */
