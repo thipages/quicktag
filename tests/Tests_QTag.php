@@ -24,6 +24,18 @@ class Tests_QTag {
                 QTag::tag('div', 'a', ['style' => 'color:red']),
                 '<div style="color:red">a</div>',
                 'tag() with attribute argument'
+            ], [
+                QTag::tag('div', 'a', ['style' => 'color:red'],['style' => 'padding:5px']),
+                '<div style="color:red;padding:5px">a</div>',
+                'tag() with two style attribute arguments'
+            ], [
+                QTag::tag('div', 'a', ['class' => 'a'],['class' => 'b']),
+                '<div class="a b">a</div>',
+                'tag() with two class attribute arguments'
+            ], [
+                QTag::tag('div', 'a', ['class' => 'a'],['class' => 'b','data-id'=>1]),
+                '<div class="a b" data-id="1">a</div>',
+                'tag() with two mix attribute arguments'
             ],
             [
                 QTag::div(),
