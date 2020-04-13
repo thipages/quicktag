@@ -7,14 +7,18 @@ Quick Html tags builder
 ### Usage of QTag class
 #### Through the following static methods
 ```php
-    tag     ($tag, $content='', $attributeMap1=[],$attributeMap2=[])
-    voidTag ($tag, $attributeMap=[])
-    tagN    ($tag, $contents, $attributeMap1=[],$attributeMap2=[]) // an helper for tag repetition
-    // shortcuts
+    // Main API
+    tag     ($tag, $content='', ...$attributeMaps)
+    voidTag ($tag, ...$attributeMaps)
+
+    // Helper for tag repetition
+    tagN    ($tag, $contents, ... $attributeMaps)
+
+    // Tag shortcuts
     html    ($content, $attributes=['lang'=>'en'])
     head    ($content,$title,$charset='utf-8')
     body    ($content)
-    div     ($content='',$attributeMap1=[],$attributeMap2=[])
+    div     ($content='',...$attributeMap1=[])
 ```
 
 #### Examples
