@@ -43,7 +43,7 @@ class QTag {
         ]));
     }
     private static function _mergeAttributes(...$attributeMaps) {
-        foreach ($attributeMaps as &$attributeMap)Tools::defaultToArray($attributeMap);
+        foreach ($attributeMaps as &$attributeMap)QTagUtils::defaultToArray($attributeMap);
         return self::mergeAttributes(...$attributeMaps);
     }
     public static function mergeAttributes(...$attributeMaps) {

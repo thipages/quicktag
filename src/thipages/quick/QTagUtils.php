@@ -1,6 +1,6 @@
 <?php
 namespace thipages\quick;
-class Tools {
+class QTagUtils {
     public static function defaultToArray(&$a,$forceArray=false) {
         if ($a==null) {
             $a=[];

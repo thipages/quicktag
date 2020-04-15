@@ -50,7 +50,7 @@ class QT {
         $html=[];
         if ($contents==null) {
             $html[]=self::_getHtml(['_tag'=>'div']);
-        } else if (Tools::isAssociativeArray($contents)) {
+        } else if (QTagUtils::isAssociativeArray($contents)) {
             $html[]=self::_getHtml($contents);
         } else {
             foreach ($contents as $content) $html[]=self::_getHtml($content);
@@ -61,7 +61,7 @@ class QT {
         return in_array($tag,self::VOID_TAGS);
     }
     public static function getAttributeMapToString($attributeMap=[]) {
-        Tools::defaultToArray($attributeMap);
+        QTagUtils::defaultToArray($attributeMap);
         if (is_array($attributeMap)) {
             $attributes = [];
             $attributes_bool = [];
@@ -81,7 +81,7 @@ class QT {
     }
     public static function tag($tag, $content, $attributeMap) {
         if (self::isVoidTag($tag)) return self::voidTag($tag,$attributeMap);
-        Tools::defaultToArray($content,true);
+        QTagUtils::defaultToArray($content,true);
         $sAttr=self::getAttributeMapToString($attributeMap);
         $res=[];
         foreach ($content as $c) $res[]= $c;
@@ -95,23 +95,22 @@ class QT {
     }
 }
 class QTag {
-    public static function tag($tag='div', $content='', $attributeMap=[]) {
-        Tools::defaultToArray($attributeMap);
+    public static function tag($tag='div', $content='', ...$attributeMaps) {
         $c=is_array($content)?join('',$content):$content;
-        return self::toHtml($tag,$c,$attributeMap);
+        return self::toHtml($tag,$c,self::_mergeAttributes(...$attributeMaps));
     }
-    public static function voidTag($tag,$attributeMap=[]) {
-        return self::tag($tag,'',$attributeMap);
+    public static function voidTag($tag,...$attributeMaps) {
+        return self::tag($tag,'',...$attributeMaps);
     }
-    public static function tagN($tag='div',$contents=[],$attributeMap=[]) {
+    public static function tagN($tag='div',$contents=[],...$attributeMaps) {
         $html=[];
         foreach($contents as $c) {
-            $html[]=self::toHtml($tag,$c,$attributeMap);
+            $html[]=self::toHtml($tag,$c,self::_mergeAttributes(...$attributeMaps));
         }
         return join('',$html);
     }
-    public static function div($content='', $attributeMap=[]) {
-        return self::tag('div',$content,$attributeMap);
+    public static function div($content='', ...$attributeMaps) {
+        return self::tag('div',$content,...$attributeMaps);
     }
     public static function html($content, $attributes=['lang'=>'en']) {
         return join("\n",
@@ -127,8 +126,8 @@ class QTag {
             ]
         );
     }
-    public static function body($content) {
-        return self::tag('body',$content);    
+    public static function body($content, $attributeMap=[]) {
+        return self::tag('body',$content,$attributeMap);    
     }
     private static function toHtml ($tag,$content,$attributeMap) {
         return QT::toHtml(array_merge($attributeMap,[
@@ -136,8 +135,32 @@ class QTag {
             '_content'=>$content,
         ]));
     }
+    private static function _mergeAttributes(...$attributeMaps) {
+        foreach ($attributeMaps as &$attributeMap)QTagUtils::defaultToArray($attributeMap);
+        return self::mergeAttributes(...$attributeMaps);
+    }
+    public static function mergeAttributes(...$attributeMaps) {
+        $css=['style','class'];
+        $delimiter=[';',' '];
+        $special=[];
+        foreach ($css as $key) $special[$key]=[];
+        foreach ($css as $key) {
+            foreach ($attributeMaps as $attr) {
+                if (isset($attr[$key])) {
+                    $special[$key][]=$attr[$key];
+                    unset($attr[$key]);
+                }
+            }
+        }
+        $merge=array_merge(...$attributeMaps);
+        for ($i=0;$i<2;$i++) {
+            $k=$css[$i];
+            if ($special[$k]!=null) $merge[$k]=join($delimiter[$i],$special[$k]);
+        }
+        return $merge;
+    }
 }
-class Tools {
+class QTagUtils {
     public static function defaultToArray(&$a,$forceArray=false) {
         if ($a==null) {
             $a=[];

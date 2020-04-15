@@ -53,7 +53,7 @@ class QT {
         $html=[];
         if ($contents==null) {
             $html[]=self::_getHtml(['_tag'=>'div']);
-        } else if (Tools::isAssociativeArray($contents)) {
+        } else if (QTagUtils::isAssociativeArray($contents)) {
             $html[]=self::_getHtml($contents);
         } else {
             foreach ($contents as $content) $html[]=self::_getHtml($content);
@@ -64,7 +64,7 @@ class QT {
         return in_array($tag,self::VOID_TAGS);
     }
     public static function getAttributeMapToString($attributeMap=[]) {
-        Tools::defaultToArray($attributeMap);
+        QTagUtils::defaultToArray($attributeMap);
         if (is_array($attributeMap)) {
             $attributes = [];
             $attributes_bool = [];
@@ -84,7 +84,7 @@ class QT {
     }
     public static function tag($tag, $content, $attributeMap) {
         if (self::isVoidTag($tag)) return self::voidTag($tag,$attributeMap);
-        Tools::defaultToArray($content,true);
+        QTagUtils::defaultToArray($content,true);
         $sAttr=self::getAttributeMapToString($attributeMap);
         $res=[];
         foreach ($content as $c) $res[]= $c;
