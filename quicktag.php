@@ -159,6 +159,11 @@ class QTag {
         }
         return $merge;
     }
+    public static function wrap($tag,...$attributesMap) {
+        return function ($content) use($tag,$attributesMap) {
+            return self::tag($tag,$content,...$attributesMap);
+        };
+    }
 }
 class QTagUtils {
     public static function defaultToArray(&$a,$forceArray=false) {

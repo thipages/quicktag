@@ -53,6 +53,11 @@ class Tests_QTag {
                 ),
                 '<!DOCTYPE html>'."\n".'<html lang="en"><head><meta charset="utf-8"><title>a title</title></head><body>Hello QTag</body></html>',
                 'html(), head() and body()'               
+            ],
+            [
+                QTag::wrap('div',['id'=>'id1'])(QTag::div('wrapped',['id'=>'id2'])),
+                '<div id="id1"><div id="id2">wrapped</div></div>',
+                'wrap()'
             ]
         ];
     }

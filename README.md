@@ -8,17 +8,18 @@ Quick Html tags builder
 #### Through the following static methods
 ```php
     // Main API
-    tag     ($tag, $content='', ...$attributeMaps)
-    voidTag ($tag, ...$attributeMaps)
+    tag     ($tag, $content='', ...$attributeMaps) : String
+    voidTag ($tag, ...$attributeMaps) : String
+    wrap    ($tag, ...$attributeMaps) : function ($content,...$attributeMaps) : String
 
     // Helper for tag repetition
-    tagN    ($tag, $contents, ... $attributeMaps)
+    tagN    ($tag, $contents, ... $attributeMaps) : String
 
     // Tag shortcuts
-    html    ($content, $attributes=['lang'=>'en'])
-    head    ($content,$title,$charset='utf-8')
-    body    ($content)
-    div     ($content='',...$attributeMap1=[])
+    html    ($content, $attributes=['lang'=>'en']) : String
+    head    ($content,$title,$charset='utf-8') : String
+    body    ($content) : String
+    div     ($content='',...$attributeMap1=[]) : String
 ```
 
 #### Examples
@@ -49,6 +50,11 @@ $html=QTag::tagN('div',[1,2]);
 
 $html=QTag::div("shortcut");
 /* <div>shortcut</div> */
+
+$html=QTag::wrap(
+    'div',['id'=>'id1']
+)(QTag::div('wrapped',['id'=>'id2']));
+/* <div id="id1"><div id="id2">wrapped</div></div> */
 ```
 
 ### Usage of QT
