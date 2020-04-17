@@ -60,12 +60,12 @@ class Tests_QTag {
                 'html(), head() and body()'               
             ],
             [
-                QTag::wrap('div',['id'=>'id1'])(QTag::div('wrapped',['id'=>'id2'])),
+                QTag::prepare('div',['id'=>'id1'])(QTag::div('wrapped',['id'=>'id2'])),
                 '<div id="id1"><div id="id2">wrapped</div></div>',
                 'wrap() with content second argument'
             ],
             [
-                 QTag::wrap('div',['id'=>'id1'])(['style'=>'color:blue'])(QTag::div('wrapped',['id'=>'id2'])),
+                 QTag::prepare('div',['id'=>'id1'])(['style'=>'color:blue'])(QTag::div('wrapped',['id'=>'id2'])),
                  '<div id="id1" style="color:blue"><div id="id2">wrapped</div></div>',
                  'wrap() with attribute second argument'
             ]
