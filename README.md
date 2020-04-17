@@ -21,7 +21,7 @@ Quick Html tags builder
     html    ($content, $attributes=['lang'=>'en']) : String
     head    ($content,$title,$charset='utf-8') : String
     body    ($content) : String
-    div     ($content='',...$attributeMap1=[]) : String
+    div     ($content='',...$attributeMap=[]) : String
 ```
 
 #### Examples
