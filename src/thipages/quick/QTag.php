@@ -42,16 +42,11 @@ class QTag {
             '_content'=>$content,
         ]));
     }
-    
     public static function wrap($tag,...$attributesMap) {
         return function ($content) use($tag,$attributesMap) {
-            return self::tag($tag,$content,...$attributesMap);
-        };
-    }
-    public static function preWrap($tag,...$attributeMap) {
-        return function (...$attributeMap2) use ($tag,$attributeMap){
-            $attributes=QTagUtils::mergeAttributes(...$attributeMap, ...$attributeMap2);
-            return self::wrap($tag, $attributes);
+            return QTagUtils::isAssociativeArray($content) 
+                ? self::wrap($tag,QTagUtils::mergeAttributes(...$attributesMap,...[$content]))
+                : self::tag($tag,$content,...$attributesMap);
         };
     }
 }

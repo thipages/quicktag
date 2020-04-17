@@ -12,9 +12,9 @@ class QTagUtils {
             $a=[$a];
         }
     }
-    public static function isAssociativeArray($arr) {
-        if (array() === $arr) return false;
-        return array_keys($arr) !== range(0, count($arr) - 1);
+    public static function isAssociativeArray($a) {
+        if ($a==null || !is_array($a)) return false;
+        return array_keys($a) !== range(0, count($a) - 1);
     }
     private static function setPropAndRemove(&$a,$prop,$default) {
         if (isset($a[$prop])) {

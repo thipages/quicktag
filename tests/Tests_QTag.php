@@ -12,6 +12,11 @@ class Tests_QTag {
                 QTag::tag('div'),
                 '<div></div>',
                 'tag() with first argument only'
+            ],
+            [
+                QTag::emptyTag('input'),
+                '<input />',
+                'empty()'
             ], [
                 QTag::tag('div', 'a'),
                 '<div>a</div>',
@@ -57,12 +62,12 @@ class Tests_QTag {
             [
                 QTag::wrap('div',['id'=>'id1'])(QTag::div('wrapped',['id'=>'id2'])),
                 '<div id="id1"><div id="id2">wrapped</div></div>',
-                'wrap()'
+                'wrap() with content second argument'
             ],
             [
-                 QTag::preWrap('div',['id'=>'id1'])(['style'=>'color:blue'])(QTag::div('wrapped',['id'=>'id2'])),
+                 QTag::wrap('div',['id'=>'id1'])(['style'=>'color:blue'])(QTag::div('wrapped',['id'=>'id2'])),
                  '<div id="id1" style="color:blue"><div id="id2">wrapped</div></div>',
-                 'preWrap()'
+                 'wrap() with attribute second argument'
             ]
         ];
     }

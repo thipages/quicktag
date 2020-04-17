@@ -8,12 +8,11 @@ Quick Html tags builder
 #### Through the following static methods
 ```php
     // Basic API
-    tag     ($tag, $content='', ...$attributeMaps) : String
+    tag      ($tag, $content='', ...$attributeMaps) : String
     emptyTag ($tag, ...$attributeMaps) : String
 
     // Advanced API
-    wrap    ($tag, ...$attributeMaps) : function ($content,...$attributeMaps2) : String
-    preWrap ($tag, ...$attributeMaps) : function ($attributeMaps2) : function ($content,...$attributeMaps3) : String
+    wrap    ($tag, ...$attributeMaps) : n(function ($contentOrAttributeMaps, ...$attributeMaps)) : String
 
     // Helper for tag repetition
     tagN    ($tag, $contents, ... $attributeMaps) : String
@@ -58,4 +57,12 @@ $html=QTag::wrap(
     'div',['id'=>'id1']
 )(QTag::div('wrapped',['id'=>'id2']));
 /* <div id="id1"><div id="id2">wrapped</div></div> */
+
+$html=QTag::wrap('div',['id'=>'id1']
+)(
+    ['style'=>'color:blue']
+)(
+   QTag::div('wrapped',['id'=>'id2'])
+);
+/* <div id="id1" style="color:blue"><div id="id2">wrapped</div></div> */
 ```
