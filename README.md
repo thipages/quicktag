@@ -59,6 +59,3 @@ $html=QTag::wrap(
 )(QTag::div('wrapped',['id'=>'id2']));
 /* <div id="id1"><div id="id2">wrapped</div></div> */
 ```
-
-### Usage of QT
-to be written

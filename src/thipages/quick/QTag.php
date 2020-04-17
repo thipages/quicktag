@@ -4,7 +4,7 @@ namespace thipages\quick;
 class QTag {
     public static function tag($tag='div', $content='', ...$attributeMaps) {
         $c=is_array($content)?join('',$content):$content;
-        return self::toHtml($tag,$c,self::_mergeAttributes(...$attributeMaps));
+        return self::toHtml($tag,$c,QTagUtils::mergeAttributes(...$attributeMaps));
     }
     public static function voidTag($tag,...$attributeMaps) {
         return self::tag($tag,'',...$attributeMaps);
@@ -12,7 +12,7 @@ class QTag {
     public static function tagN($tag='div',$contents=[],...$attributeMaps) {
         $html=[];
         foreach($contents as $c) {
-            $html[]=self::toHtml($tag,$c,self::_mergeAttributes(...$attributeMaps));
+            $html[]=self::toHtml($tag,$c,QTagUtils::mergeAttributes(...$attributeMaps));
         }
         return join('',$html);
     }
@@ -37,35 +37,12 @@ class QTag {
         return self::tag('body',$content,$attributeMap);    
     }
     private static function toHtml ($tag,$content,$attributeMap) {
-        return QT::toHtml(array_merge($attributeMap,[
+        return QTagUtils::toHtml(array_merge($attributeMap,[
             '_tag'=>$tag,
             '_content'=>$content,
         ]));
     }
-    private static function _mergeAttributes(...$attributeMaps) {
-        foreach ($attributeMaps as &$attributeMap)QTagUtils::defaultToArray($attributeMap);
-        return self::mergeAttributes(...$attributeMaps);
-    }
-    public static function mergeAttributes(...$attributeMaps) {
-        $css=['style','class'];
-        $delimiter=[';',' '];
-        $special=[];
-        foreach ($css as $key) $special[$key]=[];
-        foreach ($css as $key) {
-            foreach ($attributeMaps as $attr) {
-                if (isset($attr[$key])) {
-                    $special[$key][]=$attr[$key];
-                    unset($attr[$key]);
-                }
-            }
-        }
-        $merge=array_merge(...$attributeMaps);
-        for ($i=0;$i<2;$i++) {
-            $k=$css[$i];
-            if ($special[$k]!=null) $merge[$k]=join($delimiter[$i],$special[$k]);
-        }
-        return $merge;
-    }
+    
     public static function wrap($tag,...$attributesMap) {
         return function ($content) use($tag,$attributesMap) {
             return self::tag($tag,$content,...$attributesMap);
@@ -73,7 +50,7 @@ class QTag {
     }
     public static function preWrap($tag,...$attributeMap) {
         return function (...$attributeMap2) use ($tag,$attributeMap){
-            $attributes=self::mergeAttributes(...$attributeMap, ...$attributeMap2);
+            $attributes=QTagUtils::mergeAttributes(...$attributeMap, ...$attributeMap2);
             return self::wrap($tag, $attributes);
         };
     }
