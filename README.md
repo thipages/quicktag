@@ -13,6 +13,7 @@ Quick Html tags builder
 
     // Advanced API
     prepare  ($tag, ...$attributeMaps) : n(function ($contentOrAttributeMaps, ...$attributeMaps)) : String
+    prepareN (...$prepareList): n(function ($contentOrAttributeMaps, ...$attributeMaps)) : String
 
     // Helper for tag repetition
     tagN    ($tag, $contents, ... $attributeMaps) : String
@@ -65,4 +66,10 @@ $html=QTag::wrap('div',['id'=>'id1']
    QTag::div('wrapped',['id'=>'id2'])
 );
 /* <div id="id1" style="color:blue"><div id="id2">wrapped</div></div> */
+
+$html=QTag::prepareN(
+    QTag::prepare('label'),
+    QTag::prepare('div')
+)('labelText','divText'),
+/* <label>labelText</label><div>divText</div> */
 ```
