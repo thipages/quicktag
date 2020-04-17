@@ -58,6 +58,11 @@ class Tests_QTag {
                 QTag::wrap('div',['id'=>'id1'])(QTag::div('wrapped',['id'=>'id2'])),
                 '<div id="id1"><div id="id2">wrapped</div></div>',
                 'wrap()'
+            ],
+            [
+                 QTag::preWrap('div',['id'=>'id1'])(['style'=>'color:blue'])(QTag::div('wrapped',['id'=>'id2'])),
+                 '<div id="id1" style="color:blue"><div id="id2">wrapped</div></div>',
+                 'preWrap()'
             ]
         ];
     }

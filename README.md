@@ -7,10 +7,13 @@ Quick Html tags builder
 ### Usage of QTag class
 #### Through the following static methods
 ```php
-    // Main API
+    // Basic API
     tag     ($tag, $content='', ...$attributeMaps) : String
     voidTag ($tag, ...$attributeMaps) : String
-    wrap    ($tag, ...$attributeMaps) : function ($content,...$attributeMaps) : String
+
+    // Advanced API
+    wrap    ($tag, ...$attributeMaps) : function ($content,...$attributeMaps2) : String
+    preWrap ($tag, ...$attributeMaps) : function ($attributeMaps2) : function ($content,...$attributeMaps3) : String
 
     // Helper for tag repetition
     tagN    ($tag, $contents, ... $attributeMaps) : String

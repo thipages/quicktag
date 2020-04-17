@@ -164,6 +164,12 @@ class QTag {
             return self::tag($tag,$content,...$attributesMap);
         };
     }
+    public static function preWrap($tag,...$attributeMap) {
+        return function (...$attributeMap2) use ($tag,$attributeMap){
+            $attributes=self::mergeAttributes(...$attributeMap, ...$attributeMap2);
+            return self::wrap($tag, $attributes);
+        };
+    }
 }
 class QTagUtils {
     public static function defaultToArray(&$a,$forceArray=false) {
