@@ -40,16 +40,11 @@ class QTag {
             '_content'=>$content,
         ]));
     }
-    
     public static function wrap($tag,...$attributesMap) {
         return function ($content) use($tag,$attributesMap) {
-            return self::tag($tag,$content,...$attributesMap);
-        };
-    }
-    public static function preWrap($tag,...$attributeMap) {
-        return function (...$attributeMap2) use ($tag,$attributeMap){
-            $attributes=QTagUtils::mergeAttributes(...$attributeMap, ...$attributeMap2);
-            return self::wrap($tag, $attributes);
+            return QTagUtils::isAssociativeArray($content) 
+                ? self::wrap($tag,QTagUtils::mergeAttributes(...$attributesMap,...[$content]))
+                : self::tag($tag,$content,...$attributesMap);
         };
     }
 }
@@ -65,9 +60,9 @@ class QTagUtils {
             $a=[$a];
         }
     }
-    public static function isAssociativeArray($arr) {
-        if (array() === $arr) return false;
-        return array_keys($arr) !== range(0, count($arr) - 1);
+    public static function isAssociativeArray($a) {
+        if ($a==null || !is_array($a)) return false;
+        return array_keys($a) !== range(0, count($a) - 1);
     }
     private static function setPropAndRemove(&$a,$prop,$default) {
         if (isset($a[$prop])) {
