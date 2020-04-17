@@ -9,7 +9,7 @@ Quick Html tags builder
 ```php
     // Basic API
     tag     ($tag, $content='', ...$attributeMaps) : String
-    voidTag ($tag, ...$attributeMaps) : String
+    emptyTag ($tag, ...$attributeMaps) : String
 
     // Advanced API
     wrap    ($tag, ...$attributeMaps) : function ($content,...$attributeMaps2) : String
