@@ -4,7 +4,7 @@ class QTag {
         $c=is_array($content)?join('',$content):$content;
         return self::toHtml($tag,$c,QTagUtils::mergeAttributes(...$attributeMaps));
     }
-    public static function voidTag($tag,...$attributeMaps) {
+    public static function emptyTag($tag,...$attributeMaps) {
         return self::tag($tag,'',...$attributeMaps);
     }
     public static function tagN($tag='div',$contents=[],...$attributeMaps) {
