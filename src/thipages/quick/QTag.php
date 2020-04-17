@@ -49,4 +49,20 @@ class QTag {
                 : self::tag($tag,$content,...$attributesMap);
         };
     }
+    public static function prepareN(...$prepareList) {
+        return function (...$contentList) use($prepareList) {
+            return QTagUtils::isAssociativeArray($prepareList[0])
+                ? self::prepareN(
+                    ...array_map(
+                        function($v,$k) use ($prepareList) {
+                            return $prepareList[$k]($v);
+                        }, $prepareList, array_keys($prepareList)
+                    ))
+                : join(array_map(
+                    function($v,$k) use ($contentList){
+                        return $v($contentList[$k]);
+                    }, $prepareList, array_keys($prepareList)
+                ));
+        };
+    }
 }
