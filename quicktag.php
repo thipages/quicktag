@@ -40,10 +40,10 @@ class QTag {
             '_content'=>$content,
         ]));
     }
-    public static function wrap($tag,...$attributesMap) {
+    public static function prepare($tag, ...$attributesMap) {
         return function ($content) use($tag,$attributesMap) {
             return QTagUtils::isAssociativeArray($content) 
-                ? self::wrap($tag,QTagUtils::mergeAttributes(...$attributesMap,...[$content]))
+                ? self::prepare($tag,QTagUtils::mergeAttributes(...$attributesMap,...[$content]))
                 : self::tag($tag,$content,...$attributesMap);
         };
     }

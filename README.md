@@ -12,7 +12,7 @@ Quick Html tags builder
     emptyTag ($tag, ...$attributeMaps) : String
 
     // Advanced API
-    wrap    ($tag, ...$attributeMaps) : n(function ($contentOrAttributeMaps, ...$attributeMaps)) : String
+    prepare  ($tag, ...$attributeMaps) : n(function ($contentOrAttributeMaps, ...$attributeMaps)) : String
 
     // Helper for tag repetition
     tagN    ($tag, $contents, ... $attributeMaps) : String
