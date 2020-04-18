@@ -67,21 +67,28 @@ class Tests_QTag {
             [
                  QTag::prepare('div',['id'=>'id1'])(['style'=>'color:blue'])(QTag::div('wrapped',['id'=>'id2'])),
                  '<div id="id1" style="color:blue"><div id="id2">wrapped</div></div>',
-                 'prepare() with attribute second argument'
+                 'prepare() with attribute as second argument'
             ],
             [
                 QTag::prepareN(
                     QTag::prepare('label'),QTag::prepare('div')
                 )('labelText','divText'),
                 '<label>labelText</label><div>divText</div>',
-                'prepareN() with content second argument'
+                'prepareN() with content as second argument'
             ],
             [
                 QTag::prepareN(
                     QTag::prepare('input'),QTag::prepare('div')
                 )('','divText'),
                 '<input /><div>divText</div>',
-                'prepareN() with empty content/tag second argument'
+                'prepareN() with empty content/tag as second argument'
+            ],
+            [
+                QTag::prepareN(
+                    QTag::prepare('label'),QTag::prepare('div')
+                )(['a'=>1],['b'=>2])('labelText','divText'),
+                '<label a="1">labelText</label><div b="2">divText</div>',
+                'prepareN() with attributes as second argument'
             ]
         ];
     }
