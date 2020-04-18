@@ -48,7 +48,7 @@ class Tests_QTag {
                 'div() without argument'
             ],
             [
-                QTag::tagN('div',[1,2]),
+                join(QTag::tagN('div',[1,2])),
                 '<div>1</div><div>2</div>',
                 'tagN()'
             ],
@@ -70,23 +70,23 @@ class Tests_QTag {
                  'prepare() with attribute as second argument'
             ],
             [
-                QTag::prepN(
+                join(QTag::prepN(
                     QTag::prep('label'),QTag::prep('div')
-                )('labelText','divText'),
+                )('labelText','divText')),
                 '<label>labelText</label><div>divText</div>',
                 'prepareN() with content as second argument'
             ],
             [
-                QTag::prepN(
+                join(QTag::prepN(
                     QTag::prep('input'),QTag::prep('div')
-                )('','divText'),
+                )('','divText')),
                 '<input /><div>divText</div>',
                 'prepareN() with empty content/tag as second argument'
             ],
             [
-                QTag::prepN(
+                join(QTag::prepN(
                     QTag::prep('label'),QTag::prep('div')
-                )(['a'=>1],['b'=>2])('labelText','divText'),
+                )(['a'=>1],['b'=>2])('labelText','divText')),
                 '<label a="1">labelText</label><div b="2">divText</div>',
                 'prepareN() with attributes as second argument'
             ]

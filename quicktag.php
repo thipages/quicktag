@@ -12,7 +12,7 @@ class QTag {
         foreach($contents as $c) {
             $html[]=self::toHtml($tag,$c,QTagUtils::mergeAttributes(...$attributeMaps));
         }
-        return join('',$html);
+        return $html;
     }
     public static function div($content='', ...$attributeMaps) {
         return self::tag('div',$content,...$attributeMaps);
@@ -49,8 +49,6 @@ class QTag {
     }
     public static function prepN(...$prepareList) {
         return function (...$contentList) use($prepareList) {
-            print_r($contentList);
-            print_r($prepareList);
             return QTagUtils::isAssociativeArray($contentList[0])
                 ? self::prepN(
                     ...array_map(
@@ -58,11 +56,11 @@ class QTag {
                             return $v($contentList[$k]);
                         }, $prepareList, array_keys($prepareList)
                     ))
-                : join(array_map(
+                : array_map(
                     function($v,$k) use ($contentList){
                         return $v($contentList[$k]);
                     }, $prepareList, array_keys($prepareList)
-                ));
+                );
         };
     }
 }

@@ -12,11 +12,11 @@ Quick Html tags builder
     emptyTag ($tag, ...$attributeMaps) : String
 
     // Helper for tag repetition
-    tagN    ($tag, $contents, ... $attributeMaps) : String
+    tagN    ($tag, $contents, ... $attributeMaps) : String[]
 
     // Advanced API (for templating)
-    prep     ($tag, ...$attributeMaps) : n(function ($contentOrAttributeMaps, ...$attributeMaps)) : String
-    prepN    (...$prepareList): n(function ($contentOrAttributeMaps, ...$attributeMaps)) : String
+    prep     ($tag, ...$attributeMaps) : (function ($contentOrAttributeMaps, ...$attributeMaps)<sub>n</sub> : String
+    prepN    (...$prepareList): (function ($contentOrAttributeMaps, ...$attributeMaps)<sub>n</sub> : String[]
 
     // Tag shortcuts
     html    ($content, $attributes=['lang'=>'en']) : String
@@ -49,7 +49,7 @@ $html=QTag::tag('div',[
 */
 
 $html=QTag::tagN('div',[1,2]);
-/* <div>1</div><div>2</div> */
+/* ['<div>1</div>','<div>2</div>'] */
 
 $html=QTag::div("shortcut");
 /* <div>shortcut</div> */
@@ -71,5 +71,5 @@ $html=QTag::prepN(
     QTag::prepare('label'),
     QTag::prepare('div')
 )('labelText','divText'),
-/* <label>labelText</label><div>divText</div> */
+/*  ['<label>labelText</label>','<div>divText</div>'] */
 ```
