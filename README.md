@@ -15,8 +15,8 @@ Quick Html tags builder
     tagN    ($tag, $contents, ... $attributeMaps) : String[]
 
     // Advanced API (for templating)
-    prep     ($tag, ...$attributeMaps) : (function ($contentOrAttributeMaps, ...$attributeMaps)<sub>n</sub> : String
-    prepN    (...$prepareList): (function ($contentOrAttributeMaps, ...$attributeMaps)<sub>n</sub> : String[]
+    prep     ($tag, ...$attributeMaps) : (function ($contentOrAttributeMaps, ...$attributeMaps)&#x2099; : String
+    prepN    (...$prepareList): (function ($contentOrAttributeMaps, ...$attributeMaps)&#x2099; : String[]
 
     // Tag shortcuts
     html    ($content, $attributes=['lang'=>'en']) : String
