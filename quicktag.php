@@ -40,20 +40,22 @@ class QTag {
             '_content'=>$content,
         ]));
     }
-    public static function prepare($tag, ...$attributesMap) {
+    public static function prep($tag, ...$attributesMap) {
         return function ($content) use($tag,$attributesMap) {
             return QTagUtils::isAssociativeArray($content) 
-                ? self::prepare($tag,QTagUtils::mergeAttributes(...$attributesMap,...[$content]))
+                ? self::prep($tag,QTagUtils::mergeAttributes(...$attributesMap,...[$content]))
                 : self::tag($tag,$content,...$attributesMap);
         };
     }
-    public static function prepareN(...$prepareList) {
+    public static function prepN(...$prepareList) {
         return function (...$contentList) use($prepareList) {
-            return QTagUtils::isAssociativeArray($prepareList[0])
-                ? self::prepareN(
+            print_r($contentList);
+            print_r($prepareList);
+            return QTagUtils::isAssociativeArray($contentList[0])
+                ? self::prepN(
                     ...array_map(
-                        function($v,$k) use ($prepareList) {
-                            return $prepareList[$k]($v);
+                        function($v,$k) use ($prepareList,$contentList) {
+                            return $v($contentList[$k]);
                         }, $prepareList, array_keys($prepareList)
                     ))
                 : join(array_map(
