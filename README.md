@@ -54,7 +54,7 @@ $html=QTag::tagN('div',[1,2]);
 $html=QTag::div("shortcut");
 /* <div>shortcut</div> */
 
-$html=QTag::wrap(
+$html=QTag::prep(
     'div',['id'=>'id1']
 )(QTag::div('wrapped',['id'=>'id2']));
 /* <div id="id1"><div id="id2">wrapped</div></div> */
