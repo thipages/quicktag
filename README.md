@@ -11,12 +11,12 @@ Quick Html tags builder
     tag      ($tag, $content='', ...$attributeMaps) : String
     emptyTag ($tag, ...$attributeMaps) : String
 
-    // Advanced API
-    prep     ($tag, ...$attributeMaps) : n(function ($contentOrAttributeMaps, ...$attributeMaps)) : String
-    prepN    (...$prepareList): n(function ($contentOrAttributeMaps, ...$attributeMaps)) : String
-
     // Helper for tag repetition
     tagN    ($tag, $contents, ... $attributeMaps) : String
+
+    // Advanced API (for templating)
+    prep     ($tag, ...$attributeMaps) : n(function ($contentOrAttributeMaps, ...$attributeMaps)) : String
+    prepN    (...$prepareList): n(function ($contentOrAttributeMaps, ...$attributeMaps)) : String
 
     // Tag shortcuts
     html    ($content, $attributes=['lang'=>'en']) : String
