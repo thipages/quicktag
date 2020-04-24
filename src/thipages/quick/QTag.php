@@ -8,6 +8,16 @@ class QTag {
     public static function emptyTag($tag,...$attributeMaps) {
         return self::tag($tag,'',...$attributeMaps);
     }
+    /*
+         public static function tagN($tag='div',$contents=[],$mapFunction=null) {
+        $html=[];
+        foreach($contents as $c) {
+            $attr=$mapFunction===null?[]:$mapFunction($c);
+            $html[]=self::toHtml($tag,$c,$attr);
+        }
+        return $html;
+    }
+     */
     public static function tagN($tag='div',$contents=[],...$attributeMaps) {
         $html=[];
         foreach($contents as $c) {
@@ -23,6 +33,7 @@ class QTag {
             ['<!DOCTYPE html>',self::tag('html',$content,$attributes)]
         );
     }
+    // <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     public static function head($content,$title,$charset='utf-8') {
         return self::tag('head',
             [
