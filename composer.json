@@ -1,6 +1,6 @@
 {
   "name": "thipages/quicktag",
-  "version": "v0.5.4",
+  "version": "v0.6.0",
   "description": "Quick html tags builder",
   "type": "library",
   "keywords" : ["html","tag","void","div","quick","attributes"],

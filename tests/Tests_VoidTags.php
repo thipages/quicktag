@@ -1,5 +1,5 @@
 <?php
-use thipages\quick\QTag2;
+use thipages\quick\QTag;
 class Tests_VoidTags {
     public static function dataSet() {
         $blue=['style'=>'color:blue'];
@@ -7,26 +7,37 @@ class Tests_VoidTags {
         $min=['min'=>0];
         return [
             [
-                QTag2::tag('input'),
+                QTag::tag('input'),
                 '<input />',
                 'tag() without attributesMap'
             ],[
-                QTag2::tag('input',$type),
+                QTag::tag('input',$type),
                 '<input type="number" />',
-                'tag() with attributesMap'
+                'tag() with 1 attributesMap'
             ],[
-                QTag2::tag('input',$type,true)($blue),
+                QTag::tag('input',$type, $blue),
                 '<input type="number" style="color:blue" />',
-                'tag() with chained attributesMap'
+                'tag() with 2 attributesMap'
             ],[
-                QTag2::tag('input',$type,true)($blue,true)($min),
+                QTag::tag('input', $type,true)($blue),
+                '<input type="number" style="color:blue" />',
+                'tag() with chained 1 attributesMap'
+            ],[
+                QTag::tag('input', $type,true)(),
+                '<input type="number" />',
+                'tag() with empty chained 1 attributesMap'
+            ],[
+                QTag::tag('input',$min,$type,true)($blue),
+                '<input min="0" type="number" style="color:blue" />',
+                'tag() with chained 2 attributesMap'
+            ],[
+                QTag::tag('input',$type,true)($blue,true)($min),
                 '<input type="number" style="color:blue" min="0" />',
-                'tag() with 1chained attributesMap'
+                'tag() with double chained attributesMap'
             ]
         ];
     }
 }
-
 
 
 

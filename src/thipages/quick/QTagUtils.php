@@ -12,42 +12,6 @@ class QTagUtils {
             $a=[$a];
         }
     }
-    public static function isAssociativeArray($a) {
-        if ($a==null || !is_array($a)) return false;
-        return array_keys($a) !== range(0, count($a) - 1);
-    }
-    private static function setPropAndRemove(&$a,$prop,$default) {
-        if (isset($a[$prop])) {
-            $res=$a[$prop];
-            unset($a[$prop]);
-        } else {
-            $res=$default;
-        }
-        return $res;
-    }
-    private static function _getHtml($content) {
-        $tag=self::setPropAndRemove($content,'_tag','div');
-        if (isset($content['_content'])) {
-            $c=$content['_content'];
-            unset($content['_content']);
-            $c=is_scalar($c)?$c:self::toHtml($c);
-        } else {
-            $c='';
-        }
-        $attributeMap=self::getAttributeMapToString($content);
-        return self::tag($tag,$c,$attributeMap);
-    }
-    public static function toHtml($contents=null) {
-        $html=[];
-        if ($contents==null) {
-            $html[]=self::_getHtml(['_tag'=>'div']);
-        } else if (self::isAssociativeArray($contents)) {
-            $html[]=self::_getHtml($contents);
-        } else {
-            foreach ($contents as $content) $html[]=self::_getHtml($content);
-        }
-        return join('',$html);
-    }
     public static function isVoidTag($tag) {
         return in_array($tag,self::VOID_TAGS);
     }
@@ -70,8 +34,12 @@ class QTagUtils {
             return $attributeMap;
         }
     }
+    public static function tagger($tag, $content, $attributeMap) {
+        return (self::isVoidTag($tag))
+            ? self::voidTag($tag,$attributeMap)
+            : self::tag($tag, $content, $attributeMap);
+    }
     public static function tag($tag, $content, $attributeMap) {
-        if (self::isVoidTag($tag)) return self::voidTag($tag,$attributeMap);
         self::defaultToArray($content,true);
         $sAttr=self::getAttributeMapToString($attributeMap);
         $res=[];
@@ -86,7 +54,7 @@ class QTagUtils {
     }
     public static function mergeAttributes(...$attributeMaps) {
         $css=['style','class'];
-        $delimiter=[';',' '];
+        $delimiter=[';',' ',''];
         $special=[];
         foreach ($css as $key) $special[$key]=[];
         foreach ($css as $key) {
@@ -103,5 +71,48 @@ class QTagUtils {
             if ($special[$k]!=null) $merge[$k]=join($delimiter[$i],$special[$k]);
         }
         return $merge;
+    }
+    public static function joinKeyedArray($a,$del1, $del2) {
+        return join($del2,array_walk($a,function ($v,$k) use($del1) {
+           return "$k$del1$v"; 
+        }));
+    }
+    
+    // TO REMOVE
+    private static function setPropAndRemove(&$a,$prop,$default) {
+        if (isset($a[$prop])) {
+            $res=$a[$prop];
+            unset($a[$prop]);
+        } else {
+            $res=$default;
+        }
+        return $res;
+    }
+    private static function _getHtml($content) {
+        $tag=self::setPropAndRemove($content,'_tag','div');
+        if (isset($content['_content'])) {
+            $c=$content['_content'];
+            unset($content['_content']);
+            $c=is_scalar($c)?$c:self::toHtml($c);
+        } else {
+            $c='';
+        }
+        $attributeMap=self::getAttributeMapToString($content);
+        return self::tagger($tag,$c,$attributeMap);
+    }
+    public static function toHtml($contents=null) {
+        $html=[];
+        if ($contents==null) {
+            $html[]=self::_getHtml(['_tag'=>'div']);
+        } else if (self::isAssociativeArray($contents)) {
+            $html[]=self::_getHtml($contents);
+        } else {
+            foreach ($contents as $content) $html[]=self::_getHtml($content);
+        }
+        return join('',$html);
+    }
+    public static function isAssociativeArray($a) {
+        if ($a==null || !is_array($a)) return false;
+        return array_keys($a) !== range(0, count($a) - 1);
     }
 }

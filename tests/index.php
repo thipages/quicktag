@@ -3,9 +3,8 @@ include('../vendor/autoload.php');
 include_once('Tests_NonVoidTags.php');
 include_once('Tests_VoidTags.php');
 
-use thipages\quick\QTag;
 use thipages\quick\tests\QTests;
-$output=QTests::test(
+/*$output=QTests::test(
     [Tests_NonVoidTags::class,Tests_VoidTags::class],true
 );
 $page=QTag::html(
@@ -15,5 +14,5 @@ $page=QTag::html(
         QTag::body($output)
     ]
 );
-echo($page);
+echo($page);*/
 
