@@ -9,68 +9,18 @@ Quick Html tags builder
 #### Through the following static methods
 ```php
     // Basic API
-    tag      ($tag, $content='', ...$attributeMaps) : String
+    tag      ($tag, ...$attributeMaps)($content) : String
     emptyTag ($tag, ...$attributeMaps) : String
+    // Templating
+    not yet documented
 
-    // Helper for tag repetition
-    tagN    ($tag, $contents, ... $attributeMaps) : String[]
-
-    // Advanced API (for templating)
-    prep     ($tag, ...$attributeMaps) : (function ($contentOrAttributeMaps, ...$attributeMaps)n : String
-    prepN    (...$prepareList): (function ($contentOrAttributeMaps, ...$attributeMaps)n : String[]
-
-    // Tag shortcuts
-    html    ($content, $attributes=['lang'=>'en']) : String
-    head    ($content,$title,$charset='utf-8') : String
-    body    ($content) : String
-    div     ($content='',...$attributeMap=[]) : String
 ```
 
 #### Examples
 ```php
-$html=QTag::tag('div','Hello QTag',['style'=>'color:blue']);
+$html=QTag::tag('div',['style'=>'color:blue'])('Hello QTag');
 /* <div style="color:blue">Hello QTag</div> */
 
 $html=QTag::voidTag('input', ['type'=>'num','min'=>2]);
 /* <input type="num" min="2" /> */
-
-$blue=['style'=>'color:blue'];
-$html=QTag::tag('div','Merged with static attributes',$blue,['padding'=>'3px']);
-/* <div style="color:blue;padding:3px">Merging with static attributes</div> */
-
-$html=QTag::tag('div',[
-    QTag::tag('div','Hello'),
-    QTag::tag('div','QTag')
-], 'title'=>'Hello QTag);
-/*
-    <div title="Hello QTag">
-        <div>Hello</div>
-        <div>QTag</div>
-    </div>
-*/
-
-$html=QTag::tagN('div',[1,2]);
-/* ['<div>1</div>','<div>2</div>'] */
-
-$html=QTag::div("shortcut");
-/* <div>shortcut</div> */
-
-$html=QTag::prep(
-    'div',['id'=>'id1']
-)(QTag::div('wrapped',['id'=>'id2']));
-/* <div id="id1"><div id="id2">wrapped</div></div> */
-
-$html=QTag::prep('div',['id'=>'id1']
-)(
-    ['style'=>'color:blue']
-)(
-   QTag::div('wrapped',['id'=>'id2'])
-);
-/* <div id="id1" style="color:blue"><div id="id2">wrapped</div></div> */
-
-$html=QTag::prepN(
-    QTag::prepare('label'),
-    QTag::prepare('div')
-)('labelText','divText'),
-/*  ['<label>labelText</label>','<div>divText</div>'] */
 ```
