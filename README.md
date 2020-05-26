@@ -21,7 +21,9 @@ Maps are associative arrays mapping tags attributes
 ```
 ##### Examples
 ```php
-$html=QTag::tag('span',['style'=>'color:blue'])('Hello QTag');
+$blue=['style'=>'color:blue'];
+
+$html=QTag::tag('span',$blue)('Hello QTag');
 /* <span style="color:blue">Hello QTag</span> */
 
 $html=QTag::voidTag('input', ['type'=>'num','min'=>2]);
@@ -34,6 +36,7 @@ $html=QTag::voidTag('input', ['type'=>'num','min'=>2]);
 ##### Examples
 ```php
 $blue=['style'=>'color:blue'];
+
 $template=QTag::tag('span',$blue)('Hello QTag', true);
 $html=$template('...and more");
 /* <span style="color:blue">Hello QTag...and more</span> */
@@ -44,8 +47,10 @@ $html=$template('...and more");
 ```
 ##### Examples
 ```php
-$min_2=['min'=>2];
+$blue=['style'=>'color:blue'];
+$min=['min'=>2];
+
 $template=QTag::tag('input',$blue, true);
-$html=$template($min_2);
+$html=$template($min);
 /* <input style="color:blue" min="2"/> */
 ```
