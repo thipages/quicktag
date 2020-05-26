@@ -29,11 +29,14 @@ $html=QTag::tag('span',$blue)('Hello QTag');
 $html=QTag::voidTag('input', ['type'=>'num','min'=>2]);
 /* <input type="num" min="2" /> */
 ```
-#### Templating usage - Content tags
-```php
+
+<details>
+ <summary>Templating usage - Content tags</summary>
+    
+ ```php
     tag ($tag, ...$map1)[($content, ...$map2, true)]n($content, ...$mapN) : String
 ```
-##### Examples
+Examples
 ```php
 $blue=['style'=>'color:blue'];
 
@@ -41,7 +44,12 @@ $template=QTag::tag('span',$blue)('Hello QTag', true);
 $html=$template('...and more");
 /* <span style="color:blue">Hello QTag...and more</span> */
 ```
-#### Templating usage - Void tags
+</details>
+
+
+<details>
+ <summary>Templating usage - Void tags</summary>
+    
 ```php
     tag ($tag, ...$map1, true)[(...$map2, true)]n(...$mapN) : String
 ```
@@ -54,3 +62,4 @@ $template=QTag::tag('input',$blue, true);
 $html=$template($min);
 /* <input style="color:blue" min="2"/> */
 ```
+</details>
