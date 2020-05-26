@@ -6,21 +6,46 @@ Quick Html tags builder
 
 
 ### Usage of QTag class
-#### Through the following static methods
+#### Basic usage
+Maps are associative arrays mapping tags attributes
 ```php
-    // Basic API
-    tag      ($tag, ...$attributeMaps)($content) : String
-    emptyTag ($tag, ...$attributeMaps) : String
-    // Templating
-    not yet documented
-
+    // *************
+    // CONTENT TAGS
+    // *************
+    tag ($tag, ...$map)($content) : String
+    tag ($tag, ...$map1)($content,$map2]) : String
+    // *************
+    // VOID TAGS
+    // *************
+    tag ($tag, ...$map):String
 ```
-
-#### Examples
+##### Examples
 ```php
-$html=QTag::tag('div',['style'=>'color:blue'])('Hello QTag');
-/* <div style="color:blue">Hello QTag</div> */
+$html=QTag::tag('span',['style'=>'color:blue'])('Hello QTag');
+/* <span style="color:blue">Hello QTag</span> */
 
 $html=QTag::voidTag('input', ['type'=>'num','min'=>2]);
 /* <input type="num" min="2" /> */
+```
+#### Templating usage - Content tags
+```php
+    tag ($tag, ...$map1)[($content, ...$map2, true)]n($content, ...$mapN) : String
+```
+##### Examples
+```php
+$blue=['style'=>'color:blue'];
+$template=QTag::tag('span',$blue)('Hello QTag', true);
+$html=$template('...and more");
+/* <span style="color:blue">Hello QTag...and more</span> */
+
+#### Templating usage - Void tags
+```php
+    tag ($tag, ...$map1, true)[(...$map2, true)]n(...$mapN) : String
+```
+##### Examples
+```php
+$min_2=['min'=>2];
+$template=QTag::tag('input',$blue, true);
+$html=$template($min_2);
+/* <input style="color:blue" min="2"/> */
 ```
