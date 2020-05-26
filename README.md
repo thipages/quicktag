@@ -12,12 +12,12 @@ Maps are associative arrays mapping tags attributes
     // *************
     // CONTENT TAGS
     // *************
-    tag ($tag, ...$map)($content) : String
-    tag ($tag, ...$map1)($content,$map2]) : String
+    QTag::tag ($tag, ...$map)($content) : String
+    QTag::tag ($tag, ...$map1)($content,$map2]) : String
     // *************
     // VOID TAGS
     // *************
-    tag ($tag, ...$map):String
+    QTag::tag ($tag, ...$map):String
 ```
 ##### Examples
 ```php
@@ -34,7 +34,7 @@ $html=QTag::voidTag('input', ['type'=>'num','min'=>2]);
  <summary>Templating usage - Content tags</summary>
     
  ```php
-    tag ($tag, ...$map1)[($content, ...$map2, true)]n($content, ...$mapN) : String
+    QTag::tag ($tag, ...$map1)[($content, ...$map2, true)]n($content, ...$mapN) : String
 ```
 Examples
 ```php
@@ -51,7 +51,7 @@ $html=$template('...and more");
  <summary>Templating usage - Void tags</summary>
     
 ```php
-    tag ($tag, ...$map1, true)[(...$map2, true)]n(...$mapN) : String
+    QTag::tag ($tag, ...$map1, true)[(...$map2, true)]n(...$mapN) : String
 ```
 ##### Examples
 ```php
