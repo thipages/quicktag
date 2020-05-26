@@ -26,7 +26,7 @@ $blue=['style'=>'color:blue'];
 $html=QTag::tag('span',$blue)('Hello QTag');
 /* <span style="color:blue">Hello QTag</span> */
 
-$html=QTag::voidTag('input', ['type'=>'num','min'=>2]);
+$html=QTag::tag('input', ['type'=>'num','min'=>2]);
 /* <input type="num" min="2" /> */
 ```
 
