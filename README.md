@@ -40,7 +40,7 @@ $blue=['style'=>'color:blue'];
 $template=QTag::tag('span',$blue)('Hello QTag', true);
 $html=$template('...and more");
 /* <span style="color:blue">Hello QTag...and more</span> */
-
+```
 #### Templating usage - Void tags
 ```php
     tag ($tag, ...$map1, true)[(...$map2, true)]n(...$mapN) : String
