@@ -13,7 +13,7 @@ class QHtml {
         $sAttr=$attributeMap?' '.self::getAttributeMapToString($attributeMap):'';
         return "<$tag$sAttr />";
     }
-    private static function joinKeyedArray($a,$del1, $del2) {
+    public static function joinKeyedArray($a,$del1, $del2) {
         return join($del2,array_walk($a,function ($v,$k) use($del1) {
            return "$k$del1$v"; 
         }));
